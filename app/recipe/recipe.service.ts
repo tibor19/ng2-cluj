@@ -30,5 +30,12 @@ export class RecipeService {
             .toPromise()
             .then(response => <IRecipe[]>response.json());
     }
+
+    getRecipe(id: number): Observable<IRecipe> {
+        console.log("Getting recipe with id " + id);
+        return this.http.get('/Artifacts/data/recipe.json')
+            .map(response => <IRecipe>response.json());
+    }
+    
     
 }

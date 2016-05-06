@@ -1,4 +1,6 @@
 import {Component, OnInit} from 'angular2/core';
+import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES} from 'angular2/router';
+
 import {ImagePipeTransform} from '../pipes/image.pipe'; 
 import {IRecipe, RecipeService} from './recipe.service';
 import {DemoService} from './demo.service';
@@ -6,7 +8,8 @@ import {DemoService} from './demo.service';
 @Component({
     templateUrl: './app/recipe/weekly-menu.component.html',
     pipes: [ImagePipeTransform],
-    providers: [DemoService]
+    providers: [DemoService],
+    directives: [ROUTER_DIRECTIVES] 
 })
 export class WeeklyMenuComponent implements OnInit {
     weekDays = ['Moday', 'Tuesday', 'Wednesday'];
