@@ -9,7 +9,7 @@
                 <h4>{{recipe.name}}</h4>
             </div>
             <div class="box-image" [ngClass]="{'float-right' : odd, 'float-left' : even}">
-                <img src="content/images/food/{{recipe.image}}.jpg" width="200" height="120" alt="Recipe Image">
+                <img [src]="recipe.image | image" width="200" height="120" [alt]='recipe.name'>
             </div>
         </a>
     </div>
