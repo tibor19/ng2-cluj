@@ -4,7 +4,6 @@ import {IRecipe, RecipeService} from './recipe.service';
 import {DemoService} from './demo.service';
 
 @Component({
-    selector: 'weekly-menu',
     templateUrl: './app/recipe/weekly-menu.component.html',
     pipes: [ImagePipeTransform],
     providers: [DemoService]
