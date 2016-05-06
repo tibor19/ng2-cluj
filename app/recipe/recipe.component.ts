@@ -1,11 +1,14 @@
 import {Component} from 'angular2/core';
-import {OnActivate, CanReuse, ComponentInstruction} from 'angular2/router';
+import {OnActivate, CanReuse, CanActivate, ComponentInstruction} from 'angular2/router';
 
 import {IRecipe, RecipeService} from './recipe.service';
 
 @Component({
     templateUrl : './app/recipe/recipe.component.html' 
 })
+@CanActivate(
+    (n, p)=> +n.params['id'] != 2 
+)
 export class RecipeComponent implements OnActivate, CanReuse {
     
     recipe : IRecipe;
@@ -23,10 +26,10 @@ export class RecipeComponent implements OnActivate, CanReuse {
         .subscribe(r => this.recipe = r);
     }
     
-    routerCanDeactivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction){
-        let recipeId = +prevInstruction.params['id'];
-        return recipeId != 2;
-    }
+    // routerCanDeactivate(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction){
+    //     let recipeId = +prevInstruction.params['id'];
+    //     return recipeId != 2;
+    // }
     
     routerCanReuse(nextInstruction: ComponentInstruction, prevInstruction: ComponentInstruction){
           let recipeId = +nextInstruction.params['id'];
