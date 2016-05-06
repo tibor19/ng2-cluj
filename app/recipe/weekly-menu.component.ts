@@ -1,14 +1,6 @@
 import {Component} from 'angular2/core';
 import {ImagePipeTransform} from '../pipes/image.pipe'; 
-
-interface IRecipe {
-    recipeId: number;
-    name: string;
-    price: number;
-    time: number;
-    image: string;
-    weekDay?: string;
-}
+import {IRecipe, RecipeService} from './recipe.service';
 
 @Component({
     selector: 'weekly-menu',
@@ -21,19 +13,8 @@ export class WeeklyMenuComponent {
     recipes: IRecipe[];
 
     constructor() {
-        this.recipes = [{
-            "recipeId": 1,
-            "name": "Fish sticks and Rice",
-            "price": 2.0,
-            "time": 20,
-            "image": "fishsticks-mine"
-        }, {
-                "recipeId": 2,
-                "name": "Pizza",
-                "price": 13.0,
-                "time": 30,
-                "image": "pizza-clip"
-            }].map((r: IRecipe, i: number) => {
+        let service = new RecipeService();
+        this.recipes = service.getRecipes().map((r, i) => {
                 r.weekDay = this.weekDays[i % this.weekDays.length];
                 return r;
             });
