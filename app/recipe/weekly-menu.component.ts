@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {ImagePipeTransform} from '../pipes/image.pipe'; 
 import {IRecipe, RecipeService} from './recipe.service';
 import {DemoService} from './demo.service';
@@ -9,20 +9,22 @@ import {DemoService} from './demo.service';
     pipes: [ImagePipeTransform],
     providers: [DemoService]
 })
-export class WeeklyMenuComponent {
+export class WeeklyMenuComponent implements OnInit {
     weekDays = ['Moday', 'Tuesday', 'Wednesday'];
     data: string;
 
     recipes: IRecipe[];
 
-    constructor(service : RecipeService, demoService : DemoService) {
-        this.recipes = service.getRecipes().map((r, i) => {
-                r.weekDay = this.weekDays[i % this.weekDays.length];
-                return r;
-            });
-            
-            this.data = demoService.data;
+    constructor(private service : RecipeService, demoService : DemoService) {
+        this.data = demoService.data;
     }
 
+    ngOnInit(){
+        this.service.getRecipes().subscribe(
+            recipes => this.recipes = recipes.map((r, i) => {
+                r.weekDay = this.weekDays[i % this.weekDays.length];
+                return r;
+            }));
+    }
 
 }
