@@ -24,4 +24,11 @@ export class RecipeService {
             .map(response => <IRecipe[]>response.json());
     }
     
+    getRecipesPromise(): Promise<IRecipe[]> {
+        
+        return this.http.get('/Artifacts/data/recipies.json')
+            .toPromise()
+            .then(response => <IRecipe[]>response.json());
+    }
+    
 }

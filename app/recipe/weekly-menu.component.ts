@@ -20,7 +20,8 @@ export class WeeklyMenuComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.service.getRecipes().subscribe(
+        // this.service.getRecipes().subscribe(
+        this.service.getRecipesPromise().then(
             recipes => this.recipes = recipes.map((r, i) => {
                 r.weekDay = this.weekDays[i % this.weekDays.length];
                 return r;
