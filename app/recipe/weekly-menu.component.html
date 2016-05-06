@@ -1,7 +1,7 @@
 <article>
 
     <h2>Weekly Menu</h2>
-
+    {{data}}
     <div class="box" *ngFor="let recipe of recipes; let even = even; let odd = odd" >
         <a href="#/recipe/{{recipe.recipeId}}">
             <div class="box-content" [ngClass]="{'float-left' : odd, 'float-right' : even}">
