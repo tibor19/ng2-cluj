@@ -5,8 +5,7 @@ import {IRecipe, RecipeService} from './recipe.service';
 @Component({
     selector: 'weekly-menu',
     templateUrl: './app/recipe/weekly-menu.component.html',
-    pipes: [ImagePipeTransform],
-    providers: [RecipeService]
+    pipes: [ImagePipeTransform]
 })
 export class WeeklyMenuComponent {
     weekDays = ['Moday', 'Tuesday', 'Wednesday'];
